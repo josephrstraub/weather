@@ -1,0 +1,38 @@
+{
+  "env": {
+    "jest": true
+  },
+  "extends": [
+    "airbnb",
+    "airbnb/hooks",
+    "plugin:import/typescript"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "plugins": ["@typescript-eslint"],
+  "rules": {
+    "arrow-parens": [2, "as-needed", { "requireForBlockBody": true }],
+    "global-require": [0],
+    "import/no-dynamic-require": [0],
+    "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
+    "max-len": [
+      "error",
+      {
+        "code": 120,
+        "comments": 180,
+        "ignoreRegExpLiterals": true,
+        "ignoreStrings": true,
+        "ignoreTrailingComments": true,
+        "ignoreTemplateLiterals": true,
+        "ignoreUrls": true
+      }
+    ],
+    "quotes": ["error", "single", { "allowTemplateLiterals": true }],
+    "react/jsx-filename-extension": [0],
+    "react/jsx-props-no-spreading": [0],
+    "react/no-array-index-key": [0],
+    "react/prop-types": [0]
+  }
+}
