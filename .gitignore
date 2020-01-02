@@ -15,3 +15,6 @@ web-report/
 
 # env files
 .env
+
+# dynamically generated files
+tsconfig.json
