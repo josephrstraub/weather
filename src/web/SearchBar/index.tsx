@@ -1,20 +1,18 @@
 import React, { FC } from 'react';
-import { GooglePlacesLocation } from '../../definitions';
-import Locations from './Locations';
+import { GooglePlacesCity } from '../../definitions';
+import Cities from './Cities';
 import styles from './styles';
 
 interface Props {
-  locations: GooglePlacesLocation[];
-  onLocationSelect: (placeId: string) => void;
+  cities: GooglePlacesCity[];
+  onCitySelect: (placeId: string) => void;
 }
 
-const SearchBar: FC<Props> = ({ locations, onLocationSelect, ...inputProps }) => {
+const SearchBar: FC<Props> = ({ cities, onCitySelect, ...inputProps }) => {
   return (
     <>
-      <input list="browsers" name="myBrowser" style={styles.input} {...inputProps} />
-      <datalist id="browsers" style={styles.dataList}>
-        <Locations locations={locations} onLocationSelect={onLocationSelect} />
-      </datalist>
+      <input placeholder="Search Cities" style={styles.input} {...inputProps} />
+      <Cities cities={cities} onCitySelect={onCitySelect} />
     </>
   );
 };

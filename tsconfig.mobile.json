@@ -3,7 +3,7 @@
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "jsx": "react",
+    "jsx": "react-native",
     "lib": [
       "dom",
       "dom.iterable",
@@ -27,6 +27,6 @@
     "src/**/*"
   ],
   "exclude": [
-    "src/mobile/*"
+    "src/web/*"
   ]
 }

@@ -1,22 +1,22 @@
 import React, { FC } from 'react';
 import { FlatList, StyleSheet, Text, TouchableHighlight, View } from 'react-native';
-import { GooglePlacesLocation } from '../../definitions';
+import { GooglePlacesCity } from '../../definitions';
 
 interface Props {
-  locations: GooglePlacesLocation[];
-  onLocationSelect: Function;
+  cities: GooglePlacesCity[];
+  onCitySelect: Function;
 }
 
-const Locations: FC<Props> = ({ locations, onLocationSelect }) => (
+const Cities: FC<Props> = ({ cities, onCitySelect }) => (
   <FlatList
-    data={locations}
+    data={cities}
     ItemSeparatorComponent={() => (
       <View style={{ backgroundColor: 'gray', height: StyleSheet.hairlineWidth, marginHorizontal: 10 }} />
     )}
     renderItem={({ item, separators }) => (
       <TouchableHighlight
         key={item.place_id}
-        onPress={() => onLocationSelect(item.place_id)}
+        onPress={() => onCitySelect(item.place_id)}
         onShowUnderlay={separators.highlight}
         onHideUnderlay={separators.unhighlight}
       >
@@ -28,4 +28,4 @@ const Locations: FC<Props> = ({ locations, onLocationSelect }) => (
   />
 );
 
-export default Locations;
+export default Cities;

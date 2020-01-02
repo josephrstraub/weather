@@ -3,7 +3,7 @@ import * as LocationService from 'expo-location';
 import * as Permissions from 'expo-permissions';
 import { Alert } from 'react-native';
 import { render, wait } from '@testing-library/react-native';
-import App from './App.tsx';
+import App from '.';
 
 describe('App Component', () => {
   beforeEach(jest.resetAllMocks);

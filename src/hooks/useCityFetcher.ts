@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import { GooglePlacesLocation } from '../definitions';
+import { GooglePlacesCity } from '../definitions';
 import API from '../API';
 
 export default (query: string) => {
-  const [locations, setLocations] = useState<GooglePlacesLocation[]>([]);
+  const [locations, setLocations] = useState<GooglePlacesCity[]>([]);
 
   useEffect(() => {
     const fetchCities = async () => {
@@ -11,7 +11,10 @@ export default (query: string) => {
         setLocations([]);
         return;
       }
-      setLocations(await API.getCities(query));
+      try {
+        const response = await API.getCities(query);
+        setLocations(response);
+      } catch {}
     };
     fetchCities();
   }, [query]);

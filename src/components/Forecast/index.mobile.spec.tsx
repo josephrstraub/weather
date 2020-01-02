@@ -3,7 +3,7 @@ import { render, wait } from '@testing-library/react-native';
 import Forecast from '.';
 
 // jest.mock('../../API', () => ({
-//   getForecast: jest.fn(() => ({
+//   getCurrentWeather: jest.fn(() => ({
 //     data: {
 //       description: 'Clouds',
 //       icon: 'http://openweathermap.org/img/wn/03d@2x.png',
@@ -16,7 +16,7 @@ import Forecast from '.';
 // jest.mock('../../API', () => ({
 //   __esModule: true,
 //   default: {
-//     getForecast: jest.fn(() => ({
+//     getCurrentWeather: jest.fn(() => ({
 //       data: {
 //         description: 'Clouds',
 //         icon: 'http://openweathermap.org/img/wn/03d@2x.png',
@@ -47,7 +47,7 @@ describe('Forecast Component', () => {
     jest.doMock('../../API', () => ({
       __esModule: true,
       default: {
-        getForecast: jest.fn(() => ({
+        getCurrentWeather: jest.fn(() => ({
           data: {
             description: 'Clouds',
             icon: 'http://openweathermap.org/img/wn/03d@2x.png',
@@ -59,7 +59,7 @@ describe('Forecast Component', () => {
     }));
     const API = await import('../../API');
     render(<Forecast {...props} />);
-    expect(API.default.getForecast).toHaveBeenCalledWith(props.latitude, props.longitude);
+    expect(API.default.getCurrentWeather).toHaveBeenCalledWith(props.latitude, props.longitude);
   });
 
   it('should refetch forecast data when the coordinates change', () => {
@@ -70,7 +70,7 @@ describe('Forecast Component', () => {
       longitude: -79.603523,
     };
     rerender(<Forecast {...newProps} />);
-    expect(API.getForecast).toHaveBeenLastCalledWith(newProps.latitude, newProps.longitude);
+    expect(API.getCurrentWeather).toHaveBeenLastCalledWith(newProps.latitude, newProps.longitude);
   });
 
   it('should display the temperature for the given coordinates upon successful fetch', async () => {
@@ -101,7 +101,7 @@ describe('Forecast Component', () => {
     jest.doMock('../../API', () => ({
       __esModule: true,
       default: {
-        getForecast: jest.fn(() => ({
+        getCurrentWeather: jest.fn(() => ({
           data: null,
           error: 'Could not fetch weather data at this time.',
         })),

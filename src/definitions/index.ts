@@ -4,7 +4,14 @@ export interface ForecastDefinition {
   temperature: number;
 }
 
-export interface GooglePlacesLocation {
+export interface GeolocationCoordinates {
+  coords: {
+    latitude: number;
+    longitude: number;
+  };
+}
+
+export interface GooglePlacesCity {
   description: string;
   id: string;
   matched_substrings: {

@@ -1,25 +1,27 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { registerRootComponent } from 'expo';
 import { BlurView } from 'expo-blur';
 import * as LocationService from 'expo-location';
 import * as Permissions from 'expo-permissions';
-import { Alert, Platform, SafeAreaView, View, StyleSheet, Text } from 'react-native';
+import { Alert, Platform, SafeAreaView, StyleSheet, Text } from 'react-native';
 import { SearchBar } from 'react-native-elements';
-import API from './src/API';
-import CONSTANTS from './src/constants';
-import Forecast from './src/components/Forecast';
-import Locations from './src/components/Locations';
-import { Color, GooglePlacesLocation, Location } from './src/definitions';
-import useInput from './src/hooks/useInput';
+import API from '../API';
+import CONSTANTS from '../constants';
+import Forecast from '../components/Forecast/index.mobile';
+import Cities from '../components/Cities';
+import { Color, Location } from '../definitions';
+import useCityFetcher from '../hooks/useCityFetcher';
+import useInput from '../hooks/useInput';
 import styles from './styles';
 
 const App = () => {
   const [backgroundColor, setBackgroundColor] = useState<Color>(CONSTANTS.COLORS.warm);
-  const [selectedLocation, setSelectedLocation] = useState<null | Location>(null);
+  const [selectedLocation, setSelectedLocation] = useState<null | Location | undefined>(null);
   const [locationAccessPermissionIsGranted, setLocationAccessPermissionStatus] = useState(false);
-  const [locations, setLocations] = useState<GooglePlacesLocation[]>([]);
   const { value: searchBarValue, reset: resetSearchBarValue, inputProps: searchBarProps } = useInput('');
+  const cities = useCityFetcher(searchBarValue);
 
-  const searchBar = useRef();
+  const searchBar: any = useRef();
 
   const checkLocationPermission = async () => {
     const { status } = await Permissions.askAsync(Permissions.LOCATION);
@@ -45,7 +47,7 @@ const App = () => {
     });
   };
 
-  const onLocationSelect = async (placeId: string) => {
+  const onCitySelect = async (placeId: string) => {
     setSelectedLocation(await API.getLocationDetail(placeId));
     resetSearchBarValue();
     if (searchBar.current) {
@@ -59,17 +61,6 @@ const App = () => {
     },
     [],
   );
-
-  useEffect(() => {
-    const fetchCities = async () => {
-      if (!searchBarValue) {
-        setLocations([]);
-        return;
-      }
-      setLocations(await API.getCities(searchBarValue));
-    };
-    fetchCities();
-  }, [searchBarValue]);
 
   useEffect(() => {
     if (locationAccessPermissionIsGranted) {
@@ -96,10 +87,11 @@ const App = () => {
           platform={Platform.OS}
           ref={searchBar}
         />
-        {searchBarValue.length > 0 && <Locations locations={locations} onLocationSelect={onLocationSelect} />}
+        {searchBarValue.length > 0 && <Cities cities={cities} onCitySelect={onCitySelect} />}
       </BlurView>
     </SafeAreaView>
   );
 };
 
+registerRootComponent(App);
 export default App;

@@ -1,9 +1,9 @@
 {
-  "main": "node_modules/expo/AppEntry.js",
+  "main": "src/mobile/index.tsx",
   "scripts": {
     "android": "expo start --android",
     "ios": "expo start --ios",
-    "web": "react-scripts start --jsx react",
+    "web": "REACT_APP_IS_WEB=true node ./scripts/createTsConfig.js && REACT_APP_IS_WEB=true react-scripts start --project ./tsconfig.web.json",
     "lint": "eslint . --ext .ts,.tsx",
     "test": "jest"
   },
