@@ -33,6 +33,12 @@ REACT_APP_OPEN_WEATHER_MAP_API_KEY=<your-open-weather-api-key>
 }
 ```
 
+#### Add the following prior to the closing body tag in public/index.html
+```
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=<your-google-api-key>&libraries=places"></script>
+
+```
+
 ### Start
 ```bash
 $ yarn run <ios|android|web>
