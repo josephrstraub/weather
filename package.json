@@ -1,8 +1,8 @@
 {
   "main": "src/mobile/index.tsx",
   "scripts": {
-    "android": "expo start --android",
-    "ios": "expo start --ios",
+    "android": "node ./scripts/createTsConfig.js && expo start --android",
+    "ios": "node ./scripts/createTsConfig.js && expo start --ios",
     "web": "REACT_APP_IS_WEB=true node ./scripts/createTsConfig.js && REACT_APP_IS_WEB=true react-scripts start --project ./tsconfig.web.json",
     "lint": "eslint . --ext .ts,.tsx",
     "test": "jest"

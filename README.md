@@ -23,6 +23,16 @@ REACT_APP_GOOGLE_API_KEY=<your-google-api-key>
 REACT_APP_OPEN_WEATHER_MAP_API_KEY=<your-open-weather-api-key>
 ```
 
+#### Add the following key/value pair within the 'expo' section of app.json
+```
+"extra": {
+  "apiKeys": {
+    "google": "<your-google-api-key>",
+    "openWeatherMap": "<your-open-weather-api-key>"
+  }
+}
+```
+
 ### Start
 ```bash
 $ yarn run <ios|android|web>
