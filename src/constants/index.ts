@@ -1,7 +1,7 @@
 export default {
   API_KEYS: {
-    google: 'AIzaSyCFywVpnB4GhePAcTTkC2tWlj9p-FLLL7s',
-    openWeatherMap: '8071a9ff96d7b0980a972cb51681aa53',
+    google: process.env.REACT_APP_GOOGLE_API_KEY,
+    openWeatherMap: process.env.REACT_APP_OPEN_WEATHER_MAP_API_KEY,
   },
   COLORS: {
     cold: '#3891A6',
